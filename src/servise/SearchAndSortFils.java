@@ -4,16 +4,30 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchAndSortFils {
     public static void searchOrCreateFiles() {
-        try {
+        try {/**пересмотреть енамы!!!!!!*/
             Path inputDirections = Paths.get(Directions.INPUT.getPath());
             Path archiveDirections = Paths.get(Directions.ARCHIVE.getPath());
-            Files.createDirectories(inputDirections);
-            Files.createDirectories(archiveDirections);
+            Files.createDirectories(inputDirections);//создам если не существует
+            Files.createDirectories(archiveDirections);//создам если не существует
+
+            List<Path>filesListTxt=Files.list(inputDirections)//список файлов с расширением txt
+                    .filter(p->p.toString().endsWith(".txt"))
+                    .collect(Collectors.toList());
+            if (filesListTxt.isEmpty()){//проверка наличия файлов тхт
+                System.out.println("No files with the .txt extension were found");
+                return;
+            }
+            for (Path file: filesListTxt){
+                //применить обработку к файлу
+                //переместить отработанный файл в архив
+            }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);//написать ОШИБКИ
         }
     }
 }
