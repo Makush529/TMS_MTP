@@ -1,9 +1,9 @@
 package tests;
 
-import draft.SelectionAction;
+import servise.SelectionActionService;
 
 public class Test1 {
     public static void main(String[] args) {
-        SelectionAction.select();
+        SelectionActionService.select();
     }
 }

@@ -1,8 +1,9 @@
 package servise;
 
 public enum Directions{
-    INPUT("src/resources/"),//путь к директории вводных данных
-    ARCHIVE("src/resources/");//путь к директории архива
+    INPUT("src/resources/input"),//путь к директории вводных данных
+    ARCHIVE("src/resources/archive"),//путь к директории архива
+    REPORT("src/resources/report");
 
 
     private final String path;

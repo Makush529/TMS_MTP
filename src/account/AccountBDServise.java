@@ -1,11 +1,9 @@
-package servise;
-
-import account.Account;
+package account;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountServise {
+public class AccountBDServise {
     private static final Map<String, Account>accountMap=new HashMap<>();
     static {//отработает один раз
         accountMap.put("1234567890",new Account("1234567890", 5000));
