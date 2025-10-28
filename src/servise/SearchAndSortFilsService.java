@@ -23,7 +23,7 @@ public class SearchAndSortFilsService {
                 return;
             }
             for (Path file: filesList){
-                //применить обработку к файлу
+                FileProcessingService.fileProcessing(file);
                 //переместить отработанный файл в архив
             }
         } catch (IOException e) {
