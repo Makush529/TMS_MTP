@@ -2,7 +2,8 @@ package servise;
 
 
 public enum Patterns {
-    TRANSACTION_PATTERN("(^(.*?\\d{5}\\s\\d{5})\\s(\\d{5}\\s\\d{5})\\s(\\d{5}).*?)$"),//паттерн записи перевода
+    ACCOUNT_NUMBER_AND_AMOUNT("([0-9]{10}):([0-9]+)"),
+    TRANSACTION_PATTERN("(^(.*?\\d{10})\\s(\\d{10})\\s(\\d{5}).*?)$"),//паттерн записи перевода
     LOG_TIME_PATTERN("dd.MM.yyyy HH:mm:ss");
 
     private final String regex;

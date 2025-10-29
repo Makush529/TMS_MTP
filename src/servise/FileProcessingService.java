@@ -1,7 +1,8 @@
 package servise;
 
+import model.Account;
+
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Path;
 import java.util.regex.Matcher;
@@ -23,16 +24,24 @@ public class FileProcessingService {
                             recipientsAccount,
                             amount,
                             path.getFileName().toString());
-                } else {ReportService.logError((path.getFileName().toString()),
-                        "косяк с группами матчер",
-                        "не обработано");
+                } else {
+                    ReportService.logError((path.getFileName().toString()),
+                            "косяк с группами матчер",
+                            "не обработано");
                 }
             }
         } catch (Exception e) {//доделать!!!!!!!!!!!!!!!!!!!
         }
 
     }
-    private static void transaction(TransactionService transaction){
 
-    }
+    /*private static void transaction(TransactionService transaction) {
+        try {
+            Account.transfer(transaction.getSendersAccount(),
+                    transaction.getRecipientsAccount(),
+                    transaction.getAmount());
+            ReportService.logSuccess(transaction);
+        } catch (Exception e) {
+        }
+    }*/
 }
