@@ -1,31 +1,27 @@
 package model;
 
 public class Transaction {
-    private String transaction;
-    private String sendersA;
-    private String recipientA;
+    private String accountFrom;
+    private String accountTo;
     private int amount;
 
-    public Transaction(String transaction, String sendersA, String recipientA, int amount) {
-        this.transaction = transaction;
-        this.sendersA = sendersA;
-        this.recipientA = recipientA;
+    public Transaction(String accountFrom, String accountTo, int amount) {
+        this.accountFrom = accountFrom;
+        this.accountTo = accountTo;
         this.amount = amount;
     }
 
-    public String getTransaction() {
-        return transaction;
+    public String getAccountFrom() {
+        return accountFrom;
     }
 
-    public String getSendersA() {
-        return sendersA;
-    }
-
-    public String getRecipientA() {
-        return recipientA;
+    public String getAccountTo() {
+        return accountTo;
     }
 
     public int getAmount() {
         return amount;
     }
+
+
 }
