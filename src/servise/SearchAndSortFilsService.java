@@ -15,6 +15,11 @@ import java.util.stream.Collectors;
 
 public class SearchAndSortFilsService {
     public static List<Path> searchOrCreateFiles() {
+        try {
+            AccountService.createAccountNumbers();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try {/**пересмотреть енамы!!!!!!*/
             Path inputDirections = Paths.get(Directions.INPUT.getPath());
             Path archiveDirections = Paths.get(Directions.ARCHIVE.getPath());
@@ -26,35 +31,47 @@ public class SearchAndSortFilsService {
                     .collect(Collectors.toList());
             if (filesList.isEmpty()) {//проверка наличия файлов тхт
                 System.out.println("No files with the .txt extension were found");
-            }else {
-                for (Path file: filesList){
-                    System.out.println(file);
+            } else {
+                for (Path file : filesList) {
+                    fileProcessing(file);
+                    System.out.println(file);//забыл уже для чего это тут.....
                 }
-            }return filesList;
+            }
+            return filesList;
         } catch (IOException e) {
             throw new RuntimeException(e);//написать ОШИБКИ
         }
     }
+
     static public void fileProcessing(Path path) {
         try (FileReader fileReader = new FileReader(path.toFile());
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            Pattern pattern = Pattern.compile(String.valueOf(Patterns.TRANSACTION_PATTERN));
+            Pattern pattern = Pattern.compile(Patterns.TRANSACTION_PATTERN.getRegex());
             String line;
+            int counter=0;
             while ((line = bufferedReader.readLine()) != null) {
+                System.out.println("строка: " + (counter=counter+1));
                 Matcher matcher = pattern.matcher(line);
                 if (matcher.matches()) {
                     String accountFrom = matcher.group(1);
                     String accountIn = matcher.group(2);
                     int amount = Integer.parseInt(matcher.group(3));
-                   Transaction transaction=new Transaction(accountFrom,accountIn,amount);
+                    Transaction transaction = new Transaction(accountFrom, accountIn, amount);
+                    executeTransaction(transaction);
                 } else {
+                    System.out.println("her");
                     ReportService.logError((path.getFileName().toString()),
                             "косяк с группами матчер",
                             "не обработано");
                 }
             }
-        } catch (Exception e) {//доделать!!!!!!!!!!!!!!!!!!!
+        } catch (Exception e) {System.out.println("ghjikj!");//доделать!!!!!!!!!!!!!!!!!!!
         }
 
     }
+
+    private static void executeTransaction(Transaction transaction) {
+        AccountService.transfer(transaction.getAccountFrom(), transaction.getAccountTo(), transaction.getAmount());
+    }
+
 }
