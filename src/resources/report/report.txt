@@ -1,0 +1,42 @@
+01.11.2025 11:57:23| input data.txt| invalid account| FALSE| 
+01.11.2025 11:57:23| input data.txt| 1122334455| 5544332211| 25
+01.11.2025 11:57:23| input data.txt| invalid account| FALSE|
+01.11.2025 11:57:23| input data.txt| 4455667788| 8877665544| 99
+01.11.2025 12:00:22| input data.txt| invalid account| FALSE|
+01.11.2025 12:00:22| input data.txt| 1122334455| 5544332211| 25 \n
+01.11.2025 12:00:22| input data.txt| invalid account| FALSE|
+01.11.2025 12:00:22| input data.txt| 4455667788| 8877665544| 99 \n
+01.11.2025 12:08:48| input data.txt| invalid account| FALSE|
+
+01.11.2025 12:08:48| input data.txt| 1122334455| 5544332211| 25 
+01.11.2025 12:08:48| input data.txt| invalid account| FALSE| 
+
+01.11.2025 12:08:48| input data.txt| 4455667788| 8877665544| 99 
+01.11.2025 12:10:50| input data.txt| invalid account| FALSE| 
+
+01.11.2025 12:10:50| input data.txt| 1122334455| 5544332211| 25 
+01.11.2025 12:10:50| input data.txt| invalid account| FALSE| 
+
+01.11.2025 12:10:50| input data.txt| 4455667788| 8877665544| 99 
+01.11.2025 12:12:43| input data.txt| invalid account| FALSE| 
+01.11.2025 12:12:43| input data.txt| 1122334455| 5544332211| 25 01.11.2025 12:12:43| input data.txt| invalid account| FALSE| 
+01.11.2025 12:12:43| input data.txt| 4455667788| 8877665544| 99 01.11.2025 12:14:18| input data.txt| invalid account| FALSE| 
+01.11.2025 12:14:18| input data.txt| 1122334455| 5544332211| 25| 
+ 01.11.2025 12:14:18| input data.txt| invalid account| FALSE| 
+01.11.2025 12:14:18| input data.txt| 4455667788| 8877665544| 99| 
+ 01.11.2025 12:14:32| input data.txt| invalid account| FALSE| 
+01.11.2025 12:14:32| input data.txt| 1122334455| 5544332211| 25| 
+ 01.11.2025 12:14:32| input data.txt| invalid account| FALSE| 
+01.11.2025 12:14:32| input data.txt| 4455667788| 8877665544| 99| 
+ 01.11.2025 12:14:54| input data.txt| invalid account| FALSE| 
+01.11.2025 12:14:54| input data.txt| 1122334455| 5544332211| 25|
+ 01.11.2025 12:14:54| input data.txt| invalid account| FALSE| 
+01.11.2025 12:14:54| input data.txt| 4455667788| 8877665544| 99|
+ 01.11.2025 12:15:34| input data.txt| invalid account| FALSE| 
+01.11.2025 12:15:34| input data.txt| 1122334455| 5544332211| 25| 
+01.11.2025 12:15:34| input data.txt| invalid account| FALSE| 
+01.11.2025 12:15:34| input data.txt| 4455667788| 8877665544| 99| 
+01.11.2025 12:15:54| input data.txt| invalid account| FALSE| 
+01.11.2025 12:15:54| input data.txt| 1122334455| 5544332211| 25| 
+01.11.2025 12:15:54| input data.txt| invalid account| FALSE| 
+01.11.2025 12:15:54| input data.txt| 4455667788| 8877665544| 99| 
