@@ -3,7 +3,7 @@ package servise;
 public enum Directions{
     INPUT("src/resources/input"),//путь к директории вводных данных
     ARCHIVE("src/resources/archive"),//путь к директории архива
-    REPORT("src/resources/report");
+    REPORT("src/resources/report/report.txt");
 
 
     private final String path;

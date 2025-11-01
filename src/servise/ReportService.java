@@ -1,5 +1,7 @@
 package servise;
 
+import model.Transaction;
+
 import java.io.BufferedWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,13 +11,13 @@ import java.time.format.DateTimeFormatter;
 
 
 public class ReportService {
-    public static void logSuccess(TransactionService transactionService) {
-        String logMassage = String.format("%s| %s| %s| %s| %d ",
+    public static void logSuccess(Transaction transaction) {
+        String logMassage = String.format("%s| %s| %s| %s| %d| %n",
                 LocalDateTime.now().format(DateTimeFormatter.ofPattern(Patterns.LOG_TIME_PATTERN.getRegex())),
-                transactionService.getFile(),
-                transactionService.getSendersAccount(),
-                transactionService.getRecipientsAccount(),
-                transactionService.getAmount());
+                transaction.getFileName(),
+                transaction.getAccountFrom(),
+                transaction.getAccountTo(),
+                transaction.getAmount());
         logWrite(logMassage);
     }
 
@@ -28,14 +30,16 @@ public class ReportService {
         logWrite(logMassage);
     }
 
-    public static void logWrite(String log) {
+    public static void logWrite(String logMassage) {
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(Paths.get((Directions.REPORT.getPath())),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.APPEND)) {
+            bufferedWriter.write(logMassage);
         } catch (Exception e) {
         }
     }
-    public static void logDisplay(){
+
+    public static void logDisplay() {
         //вторая
     }
 }

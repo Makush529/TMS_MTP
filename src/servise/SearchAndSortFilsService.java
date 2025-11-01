@@ -1,5 +1,7 @@
 package servise;
 
+import exceptions.InsufficientFundsException;
+import exceptions.InvalidTransactionException;
 import model.Transaction;
 
 import java.io.BufferedReader;
@@ -48,30 +50,38 @@ public class SearchAndSortFilsService {
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             Pattern pattern = Pattern.compile(Patterns.TRANSACTION_PATTERN.getRegex());
             String line;
-            int counter=0;
+            int counter = 0;
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println("строка: " + (counter=counter+1));
+                System.out.println("строка: " + (counter = counter + 1));
                 Matcher matcher = pattern.matcher(line);
                 if (matcher.matches()) {
                     String accountFrom = matcher.group(1);
                     String accountIn = matcher.group(2);
                     int amount = Integer.parseInt(matcher.group(3));
-                    Transaction transaction = new Transaction(accountFrom, accountIn, amount);
+                    Transaction transaction = new Transaction(accountFrom, accountIn, amount, path.getFileName().toString());
                     executeTransaction(transaction);
                 } else {
-                    System.out.println("her");
-                    ReportService.logError((path.getFileName().toString()),
-                            "косяк с группами матчер",
-                            "не обработано");
+                    ReportService.logError(path.getFileName().toString(), "что то пошло не так(серч и сорт)", "FALSE");
                 }
             }
-        } catch (Exception e) {System.out.println("ghjikj!");//доделать!!!!!!!!!!!!!!!!!!!
+        } catch (Exception e) {
+            ReportService.logError(path.getFileName().toString(), "file processing error", "FALSE");
         }
 
     }
 
     private static void executeTransaction(Transaction transaction) {
-        AccountService.transfer(transaction.getAccountFrom(), transaction.getAccountTo(), transaction.getAmount());
+        try {
+            AccountService.transfer(transaction.getAccountFrom(),
+                    transaction.getAccountTo(),
+                    transaction.getAmount());
+            ReportService.logSuccess(transaction);
+        } catch (InvalidTransactionException e) {
+            ReportService.logError(transaction.getFileName(),
+                    "invalid account", "FALSE");
+        } catch (InsufficientFundsException e) {
+            ReportService.logError(transaction.getFileName(),
+                    "malo deneeg", "FALSE");
+        }
     }
-
 }
