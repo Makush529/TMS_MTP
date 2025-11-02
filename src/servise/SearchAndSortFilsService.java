@@ -39,7 +39,7 @@ public class SearchAndSortFilsService {
                     fileProcessing(file);
                     Path archiveDir = Paths.get(Directions.ARCHIVE.getPath());
                     Files.move(file, archiveDir.resolve(file.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-                    System.out.println(file);//забыл уже для чего это тут.....
+                    //System.out.println(file);//забыл уже для чего это тут.....
                 }
             }
             return filesList;
@@ -64,7 +64,7 @@ public class SearchAndSortFilsService {
                     Transaction transaction = new Transaction(accountFrom, accountIn, amount, path.getFileName().toString());
                     executeTransaction(transaction);
                 } else {
-                    ReportService.logError(path.getFileName().toString(), "что то пошло не так(серч и сорт)", "FALSE");
+                    ReportService.logError(path.getFileName().toString(), "file processing error, invalid pattern", "FALSE");
                 }
             }
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class SearchAndSortFilsService {
                     "invalid account", "FALSE");
         } catch (InsufficientFundsException e) {
             ReportService.logError(transaction.getFileName(),
-                    "malo deneeg", "FALSE");
+                    "no funds", "FALSE");
         }
     }
 }

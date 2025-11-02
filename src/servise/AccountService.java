@@ -29,7 +29,7 @@ public class AccountService {
                     int balance = Integer.parseInt(matcher.group(2));
                     accountMap.put(accountNumber, new Account(accountNumber, balance));
                 } else {
-                    System.out.println("проверь Account!" + line);
+                    System.out.println("invalid account number!" + line);
                 }
             }
         }
