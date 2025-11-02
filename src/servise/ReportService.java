@@ -3,11 +3,14 @@ package servise;
 import model.Transaction;
 
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 public class ReportService {
@@ -39,7 +42,12 @@ public class ReportService {
         }
     }
 
-    public static void logDisplay() {
-        //вторая
+    public static void logDisplay() throws IOException {
+        if (Files.exists(Path.of(Directions.REPORT.getPath()))){
+            List<String>lines= Files.readAllLines(Path.of(Directions.REPORT.getPath()));
+            for (String line: lines){
+                System.out.println(line);
+            }
+        }
     }
 }

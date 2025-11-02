@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,6 +37,8 @@ public class SearchAndSortFilsService {
             } else {
                 for (Path file : filesList) {
                     fileProcessing(file);
+                    Path archiveDir = Paths.get(Directions.ARCHIVE.getPath());
+                    Files.move(file, archiveDir.resolve(file.getFileName()), StandardCopyOption.REPLACE_EXISTING);
                     System.out.println(file);//забыл уже для чего это тут.....
                 }
             }
