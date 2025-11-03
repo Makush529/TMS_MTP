@@ -50,9 +50,7 @@ public class SearchAndSortFilsService {
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             Pattern pattern = Pattern.compile(Patterns.TRANSACTION_PATTERN.getRegex());
             String line;
-            int counter = 0;
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println("строка: " + (counter = counter + 1));
                 Matcher matcher = pattern.matcher(line);
                 if (matcher.matches()) {
                     String accountFrom = matcher.group(1);
@@ -67,7 +65,6 @@ public class SearchAndSortFilsService {
         } catch (Exception e) {
             ReportService.logError(path.getFileName().toString(), "file processing error", "FALSE");
         }
-
     }
 
     private static void executeTransaction(Transaction transaction) {

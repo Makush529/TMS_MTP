@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class AccountService {
     static Map<String, Account> accountMap = new HashMap<>();
     public static void createAccountNumbers() throws IOException {
-        try (FileReader fileReader = new FileReader("src/resources/accountDetails.txt");
+        try (FileReader fileReader = new FileReader(Directions.ACCOUNT_DETAILS.getPath());
              BufferedReader bufferedReaderForAccount = new BufferedReader(fileReader);) {
             String line;
             Pattern pattern = Pattern.compile(Patterns.ACCOUNT_NUMBER_AND_AMOUNT.getRegex());
