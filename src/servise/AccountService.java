@@ -14,13 +14,10 @@ import java.util.regex.Pattern;
 
 public class AccountService {
     static Map<String, Account> accountMap = new HashMap<>();
-
     public static void createAccountNumbers() throws IOException {
-
         try (FileReader fileReader = new FileReader("src/resources/accountDetails.txt");
              BufferedReader bufferedReaderForAccount = new BufferedReader(fileReader);) {
             String line;
-
             Pattern pattern = Pattern.compile(Patterns.ACCOUNT_NUMBER_AND_AMOUNT.getRegex());
             while ((line = bufferedReaderForAccount.readLine()) != null) {
                 Matcher matcher = pattern.matcher(line);
@@ -38,7 +35,6 @@ public class AccountService {
     public static void transfer(String accountFrom, String accountIn, int amount) throws InvalidTransactionException, InsufficientFundsException {
         Account fromAccount = accountMap.get(accountFrom);
         Account InAccount = accountMap.get(accountIn);
-
         if (fromAccount == null || InAccount == null) {
             throw new InvalidTransactionException("invalid account number");
         }
@@ -51,5 +47,4 @@ public class AccountService {
         fromAccount.setBalance(fromAccount.getBalance() - amount);
         InAccount.setBalance(InAccount.getBalance() + amount);
     }
-
 }

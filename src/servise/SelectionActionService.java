@@ -3,14 +3,13 @@ package servise;
 import java.io.IOException;
 import java.util.Scanner;
 
-
 public class SelectionActionService {
     public static void select() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("1 - start parsing\n" +
+            System.out.println("Enter the command\n" + "1 - start parsing\n" +
                     "2 - show report\n" +
-                    "3 - exit");
+                    "0 - exit");
             int userChoice = scanner.nextInt();
             switch (userChoice) {
                 case 1 -> SearchAndSortFilsService.searchOrCreateFiles();
@@ -25,9 +24,8 @@ public class SelectionActionService {
                     System.out.println("program completed");
                     System.exit(0);
                 }
-                default -> System.out.println("Invalid command entered");
+                default -> System.out.println("Enter the correct command\n");
             }
-
         }
     }
 }

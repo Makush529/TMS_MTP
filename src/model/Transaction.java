@@ -24,9 +24,8 @@ public class Transaction {
     public int getAmount() {
         return amount;
     }
+
     public String getFileName(){
         return fileName;
     }
-
-
 }

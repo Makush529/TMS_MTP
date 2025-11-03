@@ -17,18 +17,17 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class SearchAndSortFilsService {
-    public static List<Path> searchOrCreateFiles() {
+    public static void searchOrCreateFiles() {
         try {
             AccountService.createAccountNumbers();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        try {/**пересмотреть енамы!!!!!!*/
+        try {
             Path inputDirections = Paths.get(Directions.INPUT.getPath());
             Path archiveDirections = Paths.get(Directions.ARCHIVE.getPath());
             Files.createDirectories(inputDirections);//создам если не существует
             Files.createDirectories(archiveDirections);//создам если не существует
-
             List<Path> filesList = Files.list(inputDirections)//список файлов с расширением txt
                     .filter(p -> p.toString().endsWith(".txt"))
                     .collect(Collectors.toList());
@@ -39,10 +38,8 @@ public class SearchAndSortFilsService {
                     fileProcessing(file);
                     Path archiveDir = Paths.get(Directions.ARCHIVE.getPath());
                     Files.move(file, archiveDir.resolve(file.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-                    //System.out.println(file);//забыл уже для чего это тут.....
                 }
             }
-            return filesList;
         } catch (IOException e) {
             throw new RuntimeException(e);//написать ОШИБКИ
         }

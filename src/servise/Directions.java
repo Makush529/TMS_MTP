@@ -5,7 +5,6 @@ public enum Directions{
     ARCHIVE("src/resources/archive"),//путь к директории архива
     REPORT("src/resources/report/report.txt");
 
-
     private final String path;
 
     Directions(String path) {
