@@ -9,7 +9,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,16 +65,22 @@ public class AccountService {
         fromAccount.setBalance(fromAccount.getBalance() - amount);
         inAccount.setBalance(inAccount.getBalance() + amount);
         try {
-            updateAccountDetails(fromAccount, inAccount);
+            updatedAccountDetails(fromAccount);
+            updatedAccountDetails(inAccount);
         } catch (IOException e) {
             System.out.println("data saving error " + e.getMessage());
         }
     }
 
-    public static void updateAccountDetails(Account fromBalance, Account inBalance) throws IOException {
-        FileWriter fileWriter = new FileWriter(Directions.ACCOUNT_DETAILS.getPath());
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.println(fromBalance.getAccountNumber() + ":" + fromBalance.getBalance());
-        printWriter.println(inBalance.getAccountNumber() + ":" + inBalance.getBalance());
+    public static void updatedAccountDetails(Account updatedAccount) throws IOException {
+        List<String> originalNumbersAccount = Files.readAllLines(Paths.get(Directions.ACCOUNT_DETAILS.getPath()));
+        for (int i = 0; i < originalNumbersAccount.size(); i++) {
+            String[] parts = originalNumbersAccount.get(i).split(":");
+            if (parts.length >= 2 && parts[0].equals(updatedAccount.getAccountNumber())) {
+                originalNumbersAccount.set(i, updatedAccount.getAccountNumber() + ":" + updatedAccount.getBalance());
+                break;
+            }
+        }
+        Files.write(Paths.get(Directions.ACCOUNT_DETAILS.getPath()), originalNumbersAccount);
     }
 }
