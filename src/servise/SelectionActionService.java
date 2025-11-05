@@ -9,6 +9,7 @@ public class SelectionActionService {
         while (true) {
             System.out.println("Enter the command\n" + "1 - start parsing\n" +
                     "2 - show report\n" +
+                    "3 - show account info\n" +
                     "0 - exit");
             int userChoice = scanner.nextInt();
             switch (userChoice) {
@@ -20,6 +21,7 @@ public class SelectionActionService {
                         throw new RuntimeException(e);
                     }
                 }
+                case 3-> AccountService.infoAccount();
                 case 0 -> {
                     System.out.println("program completed");
                     System.exit(0);

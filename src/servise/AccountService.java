@@ -35,10 +35,22 @@ public class AccountService {
         }
     }
 
+    public static void infoAccount() {
+        try (FileReader fileReader = new FileReader(Directions.ACCOUNT_DETAILS.getPath());
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String line;
+            while ((line = bufferedReader.readLine())!=null){
+                System.out.println(line);
+            }
+        } catch (Exception e) {
+            System.out.println("reading error" + e.getMessage());
+        }
+    }
+
     public static void transfer(String accountFrom, String accountIn, int amount) throws InvalidTransactionException, InsufficientFundsException {
         Account fromAccount = accountMap.get(accountFrom);
-        Account InAccount = accountMap.get(accountIn);
-        if (fromAccount == null || InAccount == null) {
+        Account inAccount = accountMap.get(accountIn);
+        if (fromAccount == null || inAccount == null) {
             throw new InvalidTransactionException("invalid account number");
         }
         if (amount < 0) {
@@ -48,19 +60,18 @@ public class AccountService {
             throw new InsufficientFundsException("insufficient funds in the account" + fromAccount);
         }
         fromAccount.setBalance(fromAccount.getBalance() - amount);
-        InAccount.setBalance(InAccount.getBalance() + amount);
+        inAccount.setBalance(inAccount.getBalance() + amount);
         try {
-            updateAccountDetails();
+            updateAccountDetails(fromAccount, inAccount);
         } catch (IOException e) {
             System.out.println("data saving error " + e.getMessage());
         }
     }
 
-    public static void updateAccountDetails() throws IOException {
+    public static void updateAccountDetails(Account fromBalance, Account inBalance) throws IOException {
         FileWriter fileWriter = new FileWriter(Directions.ACCOUNT_DETAILS.getPath());
         PrintWriter printWriter = new PrintWriter(fileWriter);
-        for (Account account : accountMap.values()) {
-            printWriter.println(account.getAccountNumber() + ":" + account.getBalance());
-        }
+        printWriter.println(fromBalance.getAccountNumber() + ":" + fromBalance.getBalance());
+        printWriter.println(inBalance.getAccountNumber() + ":" + inBalance.getBalance());
     }
 }
