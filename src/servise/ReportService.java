@@ -39,13 +39,14 @@ public class ReportService {
                 StandardOpenOption.APPEND)) {
             bufferedWriter.write(logMassage);
         } catch (Exception e) {
+            System.out.println("log saving error " + e.getMessage());
         }
     }
 
     public static void logDisplay() throws IOException {
-        if (Files.exists(Path.of(Directions.REPORT.getPath()))){
-            List<String>lines= Files.readAllLines(Path.of(Directions.REPORT.getPath()));
-            for (String line: lines){
+        if (Files.exists(Path.of(Directions.REPORT.getPath()))) {
+            List<String> lines = Files.readAllLines(Path.of(Directions.REPORT.getPath()));
+            for (String line : lines) {
                 System.out.println(line);
             }
         }
