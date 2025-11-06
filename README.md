@@ -1,39 +1,37 @@
 <p align="center">
-  <img width="800" src="src/images/diagramm.png">
+  <img width="800" src="src/images/diagramm.jpg">
 </p>
-ОПИСАНИЕ
+DESCRIPTION
 
-Программа для выполнения денежного перевода с одного счета на другой,
-ведет учет проведенных операций и сохраняет историю транзакций в специальном файле-отчете. 
-Пользователи могут просматривать журналы транзакций и повторять процедуру обработки данных.
+The program performs money transfers between accounts, tracks conducted operations, and maintains a history of transactions in a special report file. Users can view transaction logs and repeat the data processing procedure.
 
-УСТАНОВКА И ЗАПУСК:
-Импорт проекта, открыть проект в IDEA.
-Настроить правильные пути к внешним библиотекам (при наличии).
+INSTALLATION AND LAUNCH
 
-ПОДГОТОВКА ОКРУЖЕНИЯ:
-Убедитесь, что папка resources содержит файл accountDetails.txt с данными счетов.
-Данные в файле должны быть организованы согласно описанному регулярному выражению (формат: номер_счета(хххххххххх):баланс).
-Запустите класс SelectionActionService.java, чтобы открыть интерактивное меню выбора действий.
+Clone or download the repository and extract it.
+Open the project in your preferred IDE (such as IntelliJ IDEA).
+If necessary, configure paths to external libraries.
+SETTING UP THE ENVIRONMENT
 
-ФУНКЦИОНАЛ
+Ensure that the resources folder contains an accountDetails.txt file with account information. The data format should follow the specified regular expression (pattern: account_number(xxxxxxxxxx):balance).Run the launchProgram.java class to open the interactive menu.
 
+FUNCTIONALITY
 
-ОСНОВНЫЕ ВОЗМОЖНОСТИ:
-Парсинг данных: Парсинг файлов с информацией о счетах и проведение операций по переводу средств.
-Отчётность: Ведение журнала транзакций с возможностью просмотра отчёта.
-Пользовательская активность: Управление процессом с помощью интерактивного меню.
+MAIN CAPABILITIES:
 
-ИСКЛЮЧЕНИЯ И ОШИБКИ:
-InsufficientFundsException: Генерируется, если недостаточно средств на счете.
-InvalidTransactionException: Генерируется, если транзакция проведена неправильно (например, недопустимый счет).
+Parsing Data: Parsing files containing account details and executing money transfer operations.
+Reporting: Maintaining a transaction journal with viewing capabilities.
+User Interaction: Managing processes through an interactive console-based menu.
+EXCEPTIONS AND ERRORS:
 
-АРХИТЕКТУРА ПРОЕКТА:
-model: Модуль, содержащий модели данных (Account, Transaction).
-servise: Сервисный слой, отвечающий за обработку транзакций и ведение отчетности.
-exceptions: Исключения, возникающие при обработке транзакций.
+InsufficientFundsException: Thrown when there are insufficient funds on the account.
+InvalidTransactionException: Generated when a transaction fails due to incorrect parameters (e.g., invalid account number).
+PROJECT ARCHITECTURE:
 
-ПРИНЦЫП РАБОТЫ:
-Данные считываются из файлов.
-Транзакции выполняются через сервис AccountService.
-Результаты транзакций сохраняются в файл журнала.
+model: Contains data models (classes like Account and Transaction).
+service: Responsible for transaction handling and reporting services.
+exceptions: Handles custom exceptions related to transaction failures.
+OPERATING PRINCIPLE:
+
+Data is read from files.
+Transactions are executed using the AccountService.
+Results of each transaction are saved into a log file.
