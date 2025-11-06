@@ -26,9 +26,9 @@ public class SearchAndSortFilsService {
         try {
             Path inputDirections = Paths.get(Directions.INPUT.getPath());
             Path archiveDirections = Paths.get(Directions.ARCHIVE.getPath());
-            Files.createDirectories(inputDirections);//создам если не существует
-            Files.createDirectories(archiveDirections);//создам если не существует
-            List<Path> filesList = Files.list(inputDirections)//список файлов с расширением txt
+            Files.createDirectories(inputDirections);
+            Files.createDirectories(archiveDirections);
+            List<Path> filesList = Files.list(inputDirections)
                     .filter(p -> p.toString().endsWith(".txt"))
                     .collect(Collectors.toList());
             if (filesList.isEmpty()) {//проверка наличия файлов тхт
@@ -41,7 +41,7 @@ public class SearchAndSortFilsService {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);//написать ОШИБКИ
+            throw new RuntimeException(e);
         }
     }
 
@@ -72,7 +72,7 @@ public class SearchAndSortFilsService {
             AccountService.transfer(transaction.getAccountFrom(),
                     transaction.getAccountTo(),
                     transaction.getAmount());
-            ReportService.logSuccess(transaction);
+            ReportService.logSuccess(transaction, "SUCCESSFULLY");
         } catch (InvalidTransactionException e) {
             ReportService.logError(transaction.getFileName(),
                     "invalid account", "FALSE");

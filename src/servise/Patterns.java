@@ -1,6 +1,5 @@
 package servise;
 
-
 public enum Patterns {
     ACCOUNT_NUMBER_AND_AMOUNT("([0-9]{10}):([0-9]+)"),
     TRANSACTION_PATTERN("([0-9]{10}):([0-9]{10}):([0-9]+)"),

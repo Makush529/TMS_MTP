@@ -14,13 +14,14 @@ import java.util.List;
 
 
 public class ReportService {
-    public static void logSuccess(Transaction transaction) {
-        String logMassage = String.format("%s| %s| %s| %s| %d| %n",
+    public static void logSuccess(Transaction transaction, String status) {
+        String logMassage = String.format("%s| %s| %s| %s| %d| %s %n",
                 LocalDateTime.now().format(DateTimeFormatter.ofPattern(Patterns.LOG_TIME_PATTERN.getRegex())),
                 transaction.getFileName(),
                 transaction.getAccountFrom(),
                 transaction.getAccountTo(),
-                transaction.getAmount());
+                transaction.getAmount(),
+                status);
         logWrite(logMassage);
     }
 
